@@ -31,6 +31,7 @@
     "",
     "# Except R files",
     "!*.R",
+    "!*.Rd",
     "!*.md",
     "!*.Rmd",
     "!*.Rproj",
