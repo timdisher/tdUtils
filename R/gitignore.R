@@ -94,6 +94,11 @@
   message(paste("Successfully created .renvignore file at:", filepath))
 }
 
+
+
+#' Add dependencies to DESCRIPTION
+#'
+#' @export
 .add.deps <- function(){
 
   if(file.exists("DESCRIPTION")){
