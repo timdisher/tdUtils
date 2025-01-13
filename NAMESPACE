@@ -3,3 +3,4 @@
 export(.add.deps)
 export(.create.gitignore)
 export(.create.renvignore)
+export(.init.project)

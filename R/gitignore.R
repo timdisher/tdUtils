@@ -55,6 +55,8 @@
   message(paste("Successfully created .gitignore file at:", filepath))
 }
 
+#' Initialize project with description and .gitignore
+#' @export
 .init.project <- function(){
 
   usethis::use_description()
