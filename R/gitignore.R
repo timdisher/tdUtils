@@ -60,3 +60,55 @@
   .create.gitignore("./.gitignore")
 
 }
+
+
+#' Create a .renvignore to aid with dependency detection
+#'
+#' This function generates a .renvignore that makes sure dependencies not
+#' already declared in DESCRIPTION can be detected.
+#'
+#' @param filepath Character string specifying the path and name of the
+#'   .renvignore file to be created. Defaults to ".renvignore" (in the current
+#'   working directory).
+#'
+#' @return This function does not return any value. It creates a file in the
+#'   file system as a side effect.
+#'
+#' @examples
+#' # Create .gitignore in the current working directory
+#' .create.renvignore()
+#'
+#' # Create .gitignore in a specific directory
+#' .create.renvignore("path/to/your/project/.gitignore")
+#'
+#' @export
+.create.renvignore <- function(filepath = "./.renvignore"){
+  renvignore_content <- c(
+    "DESCRIPTION"
+  )
+
+  # Write the content to the .gitignore file
+  writeLines(renvignore_content, con = filepath)
+
+  # Print a message indicating successful creation
+  message(paste("Successfully created .renvignore file at:", filepath))
+}
+
+.add.deps <- function(){
+
+  if(file.exists("DESCRIPTION")){
+
+    if(!file.exists(".renvignore")){
+      cat(crayon::yellow("DESCRIPTION detected but no .renvignore. Adding .renvignore to ensure all packages are detected"))
+      .create.renvignore()
+    }
+
+  }
+
+  deps <- renv::dependencies() |>
+    dplyr::filter(Package != "tidyverse") |>
+    dplyr::distinct(Package) |>
+    dplyr::pull(Package)
+
+  sapply(deps, function(x) usethis::use_package(x))
+}
