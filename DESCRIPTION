@@ -1,8 +1,8 @@
 Package: tdUtils
 Title: Common functions and tools used across sandpiper projects
 Version: 0.0.0.9000
-Authors@R: 
-    person("Tim", "Disher","tim.disher@sandpiper-analytics.com", role = c("aut", "cre"))
+Authors@R:
+    person("Tim", "Disher", , "tim.disher@sandpiper-analytics.com", role = c("aut","cre"))
 Description: Provide a suite of tools used across sandpiper analytics projects
 License: MIT + file LICENSE
 Encoding: UTF-8
